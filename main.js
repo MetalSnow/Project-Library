@@ -24,7 +24,7 @@ closeBtn.addEventListener("click", () => {
   dialog.close();
 });
 
-const myLibrary = [];
+const myLibrary = ["book1", "book2", "book"];
 
 function Book(author, title, pages, read) {
   (this.author = author),
@@ -32,6 +32,10 @@ function Book(author, title, pages, read) {
     (this.pages = pages),
     (this.read = read);
 }
+
+Book.prototype.bookInfo = function () {
+  return `The book "${this.title}" by ${this.author}, spanning ${this.pages} pages, is marked as ${this.read}.`;
+};
 
 function addBookToLibrary() {
   let newBook = new Book(
@@ -47,12 +51,16 @@ addBtn.addEventListener("click", (event) => {
   event.preventDefault();
   addBookToLibrary();
   displayBooks();
+  console.log("library has", myLibrary);
 });
 
 function displayBooks() {
-  for (let i = 0; i < myLibrary.length; i++) {
-    let newDiv = document.createElement("div");
-    newDiv.textContent = myLibrary[i];
-    display.appendChild(newDiv);
-  }
+  myLibrary.filter((item) => {
+    if (myLibrary.indexOf(item) === myLibrary.length - 1) {
+      let div = document.createElement("div");
+      div.textContent = item.bookInfo();
+      display.appendChild(div);
+      console.log(item);
+    }
+  });
 }
