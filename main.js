@@ -7,6 +7,7 @@ const closeBtn = document.querySelector(".close-btn");
 const addBtn = document.querySelector("#add-book");
 
 //inputs
+const inputs = document.querySelectorAll("input");
 const authorInput = document.querySelector("#author");
 const titleInput = document.querySelector("#title");
 const pagesInput = document.querySelector("#pages");
@@ -24,7 +25,7 @@ closeBtn.addEventListener("click", () => {
   dialog.close();
 });
 
-const myLibrary = ["book1", "book2", "book"];
+const myLibrary = [];
 
 function Book(author, title, pages, read) {
   (this.author = author),
@@ -33,12 +34,8 @@ function Book(author, title, pages, read) {
     (this.read = read);
 }
 
-Book.prototype.bookInfo = function () {
-  return `The book "${this.title}" by ${this.author}, spanning ${this.pages} pages, is marked as ${this.read}.`;
-};
-
 function addBookToLibrary() {
-  let newBook = new Book(
+  const newBook = new Book(
     authorInput.value,
     titleInput.value,
     pagesInput.value,
@@ -51,16 +48,38 @@ addBtn.addEventListener("click", (event) => {
   event.preventDefault();
   addBookToLibrary();
   displayBooks();
+
+  //clear inputs
+  inputs.forEach((input) => {
+    input.value = "";
+  });
   console.log("library has", myLibrary);
 });
 
 function displayBooks() {
-  myLibrary.filter((item) => {
-    if (myLibrary.indexOf(item) === myLibrary.length - 1) {
-      let div = document.createElement("div");
-      div.textContent = item.bookInfo();
-      display.appendChild(div);
-      console.log(item);
-    }
+  display.innerHTML = "";
+
+  myLibrary.forEach((book) => {
+    const bookElement = document.createElement("div");
+    const btn = document.createElement("button");
+
+    bookElement.classList.add("book");
+    btn.textContent = "Delete Book";
+
+    bookElement.innerHTML = `
+          <h2>${book.title}</h2>
+          <p>Author: ${book.author}</p>
+          <p>Pages: ${book.pages}</p>
+          <p>Mark as: ${book.read}</p>
+      `;
+
+    btn.addEventListener("click", () => {
+      myLibrary.splice(myLibrary.indexOf(book), 1);
+      bookElement.remove();
+      console.log(myLibrary);
+    });
+
+    bookElement.appendChild(btn);
+    display.appendChild(bookElement);
   });
 }
