@@ -59,27 +59,40 @@ addBtn.addEventListener("click", (event) => {
 function displayBooks() {
   display.innerHTML = "";
 
-  myLibrary.forEach((book) => {
+  myLibrary.map((book, index) => {
     const bookElement = document.createElement("div");
-    const btn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
+    const statusBtn = document.createElement("button");
+    const h2 = document.createElement("h2");
+    const p1 = document.createElement("p");
+    const p2 = document.createElement("p");
+    const p3 = document.createElement("p");
 
     bookElement.classList.add("book");
-    btn.textContent = "Delete Book";
+    bookElement.dataset.number = index;
+    deleteBtn.textContent = "Delete Book";
+    statusBtn.textContent = "read";
 
-    bookElement.innerHTML = `
-          <h2>${book.title}</h2>
-          <p>Author: ${book.author}</p>
-          <p>Pages: ${book.pages}</p>
-          <p>Mark as: ${book.read}</p>
-      `;
+    h2.innerText = book.title;
+    p1.innerText = `Author: ${book.author}`;
+    p2.innerText = `Pages: ${book.pages}`;
+    p3.innerText = `Mark as: ${book.read}`;
 
-    btn.addEventListener("click", () => {
-      myLibrary.splice(myLibrary.indexOf(book), 1);
-      bookElement.remove();
+    function deleteBook() {
+      myLibrary.splice(index, 1);
+      btn.removeEventListener("click", deleteBook);
+      displayBooks();
       console.log(myLibrary);
-    });
+    }
 
-    bookElement.appendChild(btn);
+    function toggleStatus() {
+      book.read;
+    }
+
+    deleteBtn.addEventListener("click", deleteBook);
+    statusBtn.addEventListener("click", toggleStatus);
+
+    bookElement.append(h2, p1, p2, p3, statusBtn, deleteBtn);
     display.appendChild(bookElement);
   });
 }
