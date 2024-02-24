@@ -8,6 +8,7 @@ body {
   align-items: center;
   gap: 3rem;
   padding: 30px;
+  box-sizing: border-box;
 }
 
 .modal-btn {
@@ -22,10 +23,65 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
+
 .modal-btn:hover {
   color: white;
   background-color: darkslategray;
   opacity: 0.8;
+}
+
+dialog {
+  position: relative;
+  padding: 40px;
+  border: 1px solid darkslategray;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px darkslategray;
+}
+
+dialog > button {
+  padding: 5px;
+  color: white;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+dialog > button:hover,
+form button:hover {
+  opacity: 0.8;
+}
+
+form {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px);
+  gap: 15px;
+}
+
+form .form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+form .form-item input {
+  padding: 5px;
+  border-radius: 7px;
+  border: 1px solid lightgray;
+  background-color: rgb(247, 247, 247);
+  outline: none;
+  font-size: 14px;
+}
+
+form button,
+.display button {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  justify-self: center;
+  border: 1px solid gray;
+  cursor: pointer;
 }
 
 .display {
@@ -33,6 +89,18 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+}
+
+.display .book {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+}
+
+.display button:active {
+  position: relative;
+  left: 1px;
+  top: 1px;
 }
 
 .book {
