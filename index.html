@@ -3,33 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Library</title>
   </head>
   <body>
     <button class="modal-btn">NEW BOOK</button>
     <dialog>
-      <div class="input">
-        <form action="" method="get">
-          <div class="item1">
-            <label for="author">author:</label>
-            <input type="text" id="author" name="author" />
-          </div>
-          <div class="item2">
-            <label for="title">title:</label>
-            <input type="text" id="title" name="title" />
-          </div>
-          <div class="item3">
-            <label for="pages">number of pages:</label>
-            <input type="text" id="pages" name="pages" />
-          </div>
-          <div class="item4">
-            <label for="read">reading status:</label>
-            <input type="text" id="read" name="read" />
-          </div>
-          <button type="submit" id="add-book">Add Book</button>
-        </form>
-      </div>
-      <button class="close-btn">close</button>
+      <form action="" method="get">
+        <div class="form-item">
+          <label for="author">Author</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            placeholder="Author name"
+          />
+        </div>
+        <div class="form-item">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Title" />
+        </div>
+        <div class="form-item">
+          <label for="pages">Number of pages</label>
+          <input type="text" id="pages" name="pages" placeholder="e.g(123)" />
+        </div>
+        <button type="submit" id="add-book">Add Book</button>
+      </form>
+      <button class="close-btn">close tab</button>
     </dialog>
     <div class="display"></div>
     <script src="main.js"></script>
