@@ -11,7 +11,6 @@ const inputs = document.querySelectorAll("input");
 const authorInput = document.querySelector("#author");
 const titleInput = document.querySelector("#title");
 const pagesInput = document.querySelector("#pages");
-// console.log(authorInput.value);
 
 document.body.appendChild(display);
 
@@ -27,9 +26,9 @@ closeBtn.addEventListener("click", () => {
 const myLibrary = [];
 
 function Book(author, title, pages, read) {
-  (this.author = author),
-    (this.title = title),
-    (this.pages = pages),
+  (this.author = author || "Unkown"),
+    (this.title = title || "NO TITLE"),
+    (this.pages = pages || "0"),
     (this.read = read);
 }
 
@@ -44,7 +43,7 @@ Book.prototype.toggleStatus = function () {
 function addBookToLibrary() {
   const newBook = new Book(
     authorInput.value,
-    titleInput.value,
+    titleInput.value.toUpperCase(),
     pagesInput.value,
     "Not Read"
   );
@@ -60,7 +59,6 @@ addBtn.addEventListener("click", (event) => {
   inputs.forEach((input) => {
     input.value = "";
   });
-  console.log("library has", myLibrary);
 });
 
 function displayBooks() {
@@ -90,7 +88,6 @@ function displayBooks() {
       myLibrary.splice(index, 1);
       deleteBtn.removeEventListener("click", deleteBook);
       displayBooks();
-      console.log(myLibrary);
     }
 
     deleteBtn.addEventListener("click", deleteBook);
@@ -98,6 +95,11 @@ function displayBooks() {
     statusBtn.addEventListener("click", () => {
       book.toggleStatus();
       p3.innerText = `Mark as: ${book.read}`;
+      if (book.read === "Read") {
+        statusBtn.style.opacity = "0.7";
+      } else {
+        statusBtn.style.opacity = "1";
+      }
     });
 
     bookElement.append(h2, p1, p2, p3, statusBtn, deleteBtn);
