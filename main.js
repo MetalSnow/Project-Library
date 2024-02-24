@@ -75,7 +75,7 @@ function displayBooks() {
 
     bookElement.classList.add("book");
     bookElement.dataset.number = index;
-
+    bookElement.style.backgroundColor = getRandomColor();
     deleteBtn.textContent = "Delete Book";
     statusBtn.textContent = "Read Status";
 
@@ -105,4 +105,15 @@ function displayBooks() {
     bookElement.append(h2, p1, p2, p3, statusBtn, deleteBtn);
     display.appendChild(bookElement);
   });
+}
+
+function getRandomColor() {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  // Generate dark colors only
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 8)];
+    console.log("1234"[Math.floor(Math.random())]);
+  }
+  return color;
 }
