@@ -11,7 +11,6 @@ const inputs = document.querySelectorAll("input");
 const authorInput = document.querySelector("#author");
 const titleInput = document.querySelector("#title");
 const pagesInput = document.querySelector("#pages");
-const readInput = document.querySelector("#read");
 // console.log(authorInput.value);
 
 document.body.appendChild(display);
@@ -34,12 +33,20 @@ function Book(author, title, pages, read) {
     (this.read = read);
 }
 
+Book.prototype.toggleStatus = function () {
+  if (this.read === "Not Read") {
+    this.read = "Read";
+  } else {
+    this.read = "Not Read";
+  }
+};
+
 function addBookToLibrary() {
   const newBook = new Book(
     authorInput.value,
     titleInput.value,
     pagesInput.value,
-    readInput.value
+    "Not Read"
   );
   myLibrary.push(newBook);
 }
@@ -70,8 +77,9 @@ function displayBooks() {
 
     bookElement.classList.add("book");
     bookElement.dataset.number = index;
+
     deleteBtn.textContent = "Delete Book";
-    statusBtn.textContent = "read";
+    statusBtn.textContent = "Read Status";
 
     h2.innerText = book.title;
     p1.innerText = `Author: ${book.author}`;
@@ -80,17 +88,17 @@ function displayBooks() {
 
     function deleteBook() {
       myLibrary.splice(index, 1);
-      btn.removeEventListener("click", deleteBook);
+      deleteBtn.removeEventListener("click", deleteBook);
       displayBooks();
       console.log(myLibrary);
     }
 
-    function toggleStatus() {
-      book.read;
-    }
-
     deleteBtn.addEventListener("click", deleteBook);
-    statusBtn.addEventListener("click", toggleStatus);
+
+    statusBtn.addEventListener("click", () => {
+      book.toggleStatus();
+      p3.innerText = `Mark as: ${book.read}`;
+    });
 
     bookElement.append(h2, p1, p2, p3, statusBtn, deleteBtn);
     display.appendChild(bookElement);
