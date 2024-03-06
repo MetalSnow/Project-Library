@@ -25,20 +25,21 @@ closeBtn.addEventListener("click", () => {
 
 const myLibrary = [];
 
-function Book(author, title, pages, read) {
-  (this.author = author || "Unkown"),
-    (this.title = title || "NO TITLE"),
-    (this.pages = pages || "0"),
-    (this.read = read);
-}
-
-Book.prototype.toggleStatus = function () {
-  if (this.read === "Not Read") {
-    this.read = "Read";
-  } else {
-    this.read = "Not Read";
+class Book {
+  constructor(author, title, pages, read) {
+    (this.author = author || "Unkown"),
+      (this.title = title || "NO TITLE"),
+      (this.pages = pages || "0"),
+      (this.read = read);
   }
-};
+  toggleStatus() {
+    if (this.read === "Not Read") {
+      this.read = "Read";
+    } else {
+      this.read = "Not Read";
+    }
+  }
+}
 
 function addBookToLibrary() {
   const newBook = new Book(
@@ -75,7 +76,7 @@ function displayBooks() {
 
     bookElement.classList.add("book");
     bookElement.dataset.number = index;
-    bookElement.style.backgroundColor = getRandomColor();
+
     deleteBtn.textContent = "Delete Book";
     statusBtn.textContent = "Read Status";
 
@@ -105,15 +106,4 @@ function displayBooks() {
     bookElement.append(h2, p1, p2, p3, statusBtn, deleteBtn);
     display.appendChild(bookElement);
   });
-}
-
-function getRandomColor() {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  // Generate dark colors only
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 8)];
-    console.log("1234"[Math.floor(Math.random())]);
-  }
-  return color;
 }
