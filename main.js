@@ -25,20 +25,21 @@ closeBtn.addEventListener("click", () => {
 
 const myLibrary = [];
 
-function Book(author, title, pages, read) {
-  (this.author = author || "Unkown"),
-    (this.title = title || "NO TITLE"),
-    (this.pages = pages || "0"),
-    (this.read = read);
-}
-
-Book.prototype.toggleStatus = function () {
-  if (this.read === "Not Read") {
-    this.read = "Read";
-  } else {
-    this.read = "Not Read";
+class Book {
+  constructor(author, title, pages, read) {
+    (this.author = author || "Unkown"),
+      (this.title = title || "NO TITLE"),
+      (this.pages = pages || "0"),
+      (this.read = read);
   }
-};
+  toggleStatus() {
+    if (this.read === "Not Read") {
+      this.read = "Read";
+    } else {
+      this.read = "Not Read";
+    }
+  }
+}
 
 function addBookToLibrary() {
   const newBook = new Book(
@@ -75,7 +76,7 @@ function displayBooks() {
 
     bookElement.classList.add("book");
     bookElement.dataset.number = index;
-    bookElement.style.backgroundColor = getRandomColor();
+
     deleteBtn.textContent = "Delete Book";
     statusBtn.textContent = "Read Status";
 
