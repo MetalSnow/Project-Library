@@ -9,7 +9,8 @@
   <body>
     <button class="modal-btn">NEW BOOK</button>
     <dialog>
-      <form action="" method="get">
+      <span class="error"></span>
+      <form action="" method="get" novalidate>
         <div class="form-item">
           <label for="author">Author</label>
           <input
@@ -17,15 +18,28 @@
             id="author"
             name="author"
             placeholder="Author name"
+            required
           />
         </div>
         <div class="form-item">
           <label for="title">Title</label>
-          <input type="text" id="title" name="title" placeholder="Title" />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            required
+          />
         </div>
         <div class="form-item">
           <label for="pages">Number of pages</label>
-          <input type="text" id="pages" name="pages" placeholder="e.g(123)" />
+          <input
+            type="number"
+            id="pages"
+            name="pages"
+            placeholder="e.g(123)"
+            required
+          />
         </div>
         <button type="submit" id="add-book">Add Book</button>
       </form>

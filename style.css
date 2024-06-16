@@ -57,6 +57,7 @@ form button:hover {
 }
 
 form {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: minmax(200px, 300px);
   gap: 15px;
@@ -123,4 +124,19 @@ form button:active {
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 2px 2px 2px black;
+}
+
+.error {
+  width: 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
 }
